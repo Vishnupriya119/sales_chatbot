@@ -1,8 +1,8 @@
 # sales_chatbot
-#Retail Chatbot for Sales Analytics
+# Retail Chatbot for Sales Analytics
 This project is a retail chatbot that helps users interact with sales data, providing insights on total sales, quantity sold, and other queries using natural language. The chatbot can handle both sales-related queries and general queries such as greetings.
 
-#Features
+# Features
 *Sales Data Query: Users can ask questions like:
 *Total sales in the last week
 *Total sales for a specific product
@@ -12,13 +12,13 @@ This project is a retail chatbot that helps users interact with sales data, prov
 *General Queries: The chatbot can also handle simple greetings and general conversations.
 *Front-end Interface: The chatbot has a colorful and user-friendly front-end interface with type indicators.
 
-#Tech Stack
+# Tech Stack
 Backend: Node.js, Express
 Database: MySQL
 Front-end: HTML, CSS, JavaScript
 #Deployment: Can be deployed via Vercel, GitHub, or any other cloud platform.
 
-#Installation
+# Installation
 Clone the repository:
 bash
 Copy code
@@ -31,7 +31,7 @@ Copy code
 npm install
 Setup the MySQL Database:
 
-#Create a MySQL database called sales.
+# Create a MySQL database called sales.
 Run the following SQL script to create the required table:
 sql
 Copy code
@@ -50,7 +50,7 @@ Copy code
 node server.js
 Access the chatbot: Open your browser and go to http://localhost:3000.
 
-#Usage
+# Usage
 Query Examples
 Total Sales Last Week:
 "What are the total sales in the last week?"
