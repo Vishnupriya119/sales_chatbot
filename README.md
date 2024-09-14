@@ -13,8 +13,6 @@ This project is a retail chatbot that helps users interact with sales data, prov
   
 - **General Queries**: The chatbot can also handle simple greetings and general conversations.
 
-- **LLM Integration**: The chatbot is integrated with an open-source LLM (GPT-J) to handle more complex queries.
-
 - **Front-end Interface**: The chatbot has a colorful and user-friendly front-end interface with type indicators.
 
 ## Tech Stack
@@ -24,8 +22,6 @@ This project is a retail chatbot that helps users interact with sales data, prov
 - **Database**: MySQL
 
 - **Front-end**: HTML, CSS, JavaScript
-
-- **LLM**: GPT-J via Hugging Face Hub
 
 - **Deployment**: Can be deployed via Vercel, GitHub, or any other cloud platform.
 
@@ -65,13 +61,13 @@ node server.js
 Access the chatbot: Open your browser and go to http://localhost:3000.
 
 ## Usage
--**Query Examples**
--**Total Sales Last Week:**
--**"What are the total sales in the last week?"**
-Total Sales for a Specific Product:
-"What are the total sales for Electronics?"
-Quantity Sold for a Specific Product:
-"What is the quantity sold for Mobiles?"
-General Queries
-"Hi, how are you?"
-"Goodbye!"
+- **Query Examples**
+- **Total Sales Last Week:**
+- **"What are the total sales in the last week?"**
+- **Total Sales for a Specific Product:**
+- **"What are the total sales for Electronics?"**
+- **Quantity Sold for a Specific Product:**
+- **"What is the quantity sold for Mobiles?"**
+- **General Queries**
+- **"Hi, how are you?"**
+- **"Goodbye!"**
