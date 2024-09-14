@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Bot</title>
+    <style>
+        /* Reset some default styling */
+        body, h1, input, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set a background color for the whole page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+        }
+
+        /* Style the chat container */
+        .chat-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px auto;
+            border: 1px solid #00796b;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style the header */
+        header {
+            background-color: #00796b;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        /* Style the chat box */
+        .chat-box {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            border-top: 1px solid #00796b;
+        }
+
+        /* Style the chat history */
+        .chat-history {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #00796b;
+        }
+
+        /* Style the user input area */
+        .user-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #00796b;
+            background-color: #e0f2f1;
+        }
+
+        /* Style the input field */
+        #user-message {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #user-message:focus {
+            border-color: #004d40;
+        }
+
+        /* Style the send button */
+        #send-button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #send-button:hover {
+            background-color: #004d40;
+        }
+
+        /* Style chat messages */
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: #b2dfdb;
+            align-self: flex-end;
+        }
+
+        .bot-message {
+            background-color: #c8e6c9;
+            align-self: flex-start;
+        }
+
+        /* Add type indicators */
+        .message-type {
+            font-size: 0.9em;
+            color: #00796b;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>Chatbot</h1>
+        </header>
+        <div class="chat-box">
+            <div id="chat-history" class="chat-history"></div>
+            <div class="user-input">
+                <input type="text" id="user-message" placeholder="Type your message..." />
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('send-button').addEventListener('click', async () => {
+            const message = document.getElementById('user-message').value;
+            if (message.trim() === '') return;
+
+            const chatHistory = document.getElementById('chat-history');
+            chatHistory.innerHTML += `
+                <div class="message user-message">
+                    <div class="message-type">You:</div>
+                    ${message}
+                </div>`;
+            document.getElementById('user-message').value = '';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message }),
+                });
+                const data = await response.json();
+                chatHistory.innerHTML += `
+                    <div class="message bot-message">
+                        <div class="message-type">Bot:</div>
+                        ${data.reply}
+                    </div>`;
+            } catch (error) {
+                chatHistory.innerHTML += `
+                    <div class="message bot-message">
+                        <div class="message-type">Bot:</div>
+                        Sorry, there was an error.
+                    </div>`;
+            }
+
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        });
+    </script>
+</body>
+</html>
